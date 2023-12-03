@@ -2,7 +2,11 @@ export const Themes = {
     colors: {
         white: '#F9F4F5',
         black: '#000',
-        purple: '#C8B8DB'
+        purple: '#C8B8DB',
+        green100: '#3EFF8B',
+        green300: '#16DB65',
+        green600: '#058C42',
+        green900: '#04471C'
     },
     breakPoints: {
         smallMobile: "375px",
