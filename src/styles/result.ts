@@ -8,6 +8,11 @@ export const Container = styled.div`
     justify-content: center;
     flex-direction: column;
     height: 30rem;
+    gap: 2rem;
 
     background: ${Themes.colors.green100};
+`
+
+export const Header = styled.header`
+    display: flex;
 `

@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Box, Container, Subtitle, Title } from "@/styles";
+import { Container, Header, Subtitle, Title } from "@/styles";
 import { Button } from '@mui/material';
-import { api } from '@/services/api';
 import { useCars } from '@/contexts/carsContext';
-
-
+import { useRouter } from 'next/router';
+import { Box } from '@/components';
 
 export default function Home() {
 
-  const { brands, getModels, models } = useCars()
+  const { push } = useRouter()
+  const { brands, getModels, models, years, getYears, getCar } = useCars()
 
   const [brandSelected, setBrandSelected] = useState('');
   const [modelSelected, setModelSelected] = useState('');
+  const [yearSelected, setYearSelected] = useState('');
 
   const handleChangeBrand = (event: SelectChangeEvent) => {
     const idBrand = event.target.value
@@ -27,20 +28,26 @@ export default function Home() {
   const handleChangeModel = (event: SelectChangeEvent) => {
     const idModel = event.target.value
     setModelSelected(idModel);
-    console.log(idModel, 'event.target.value')
-    //getModels(idModel)
+    getYears(brandSelected, idModel)
   };
 
-  //useEffect(() => {
-  //  const teste = api.get('carros/marcas/')
-  //},[])
-  console.log(models, 'models')
+  const handleChangeYear = (event: SelectChangeEvent) => {
+    const idYear = event.target.value
+    setYearSelected(idYear);
+    console.log(yearSelected, 'event.target.value')
+  };
+
+  const handleGetCar = async () => {
+    await getCar(brandSelected, modelSelected, yearSelected)
+    push('/resultado')
+  }
 
   return (
     <Container>
-      <Title>Tabela Fipe</Title>
-      <Subtitle>Consulte o valor de um veículo de forma gratuita</Subtitle>
-
+      <Header>
+        <Title>Tabela Fipe</Title>
+        <Subtitle>Consulte o valor de um veículo de forma gratuita</Subtitle>
+      </Header>
       <Box>
       <FormControl sx={{ minWidth: 600 }} size="medium">
       <InputLabel id="demo-select-small-label">Marca</InputLabel>
@@ -70,7 +77,29 @@ export default function Home() {
         )) }
       </Select>
     </FormControl>
-    <Button variant="outlined">Consultar preço</Button>
+    { modelSelected && (
+      <FormControl sx={{ minWidth: 600 }} size="medium">
+      <InputLabel id="demo-select-small-label">Ano</InputLabel>
+      <Select
+        labelId="demo-select-small-label"
+        id="demo-select-small"
+        value={yearSelected}
+        label="Ano"
+        onChange={handleChangeYear}
+      >
+        { years && years?.map(year => (
+          <MenuItem key={year.codigo} value={year.codigo}>{year.nome}</MenuItem>
+        )) }
+      </Select>
+    </FormControl>
+    ) }
+    <Button 
+      variant="outlined"
+      disabled={!yearSelected || !modelSelected || !brandSelected}
+      onClick={handleGetCar} 
+    >
+      Consultar preço
+    </Button>
         </Box>
     </Container>
   )

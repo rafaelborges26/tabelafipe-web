@@ -1,3 +1,7 @@
-export interface ITag {
-    children: 
+export interface ITag extends ITagStyles  {
+    title: string
+}
+
+export interface ITagStyles {
+    type: 'success' | 'error'
 }

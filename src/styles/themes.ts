@@ -6,7 +6,9 @@ export const Themes = {
         green100: '#3EFF8B',
         green300: '#16DB65',
         green600: '#058C42',
-        green900: '#04471C'
+        green900: '#04471C',
+        red300: '#FF6F59',
+        red600: '#D52941',
     },
     breakPoints: {
         smallMobile: "375px",

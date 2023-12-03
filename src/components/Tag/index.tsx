@@ -1,7 +1,8 @@
 import { TagContainer } from "./styles"
+import { ITag } from "./interfaces"
 
-export const Tag = () => {
+export const Tag = ({ title, type } :ITag) => {
     return (
-        <TagContainer>tag</TagContainer>
+        <TagContainer type={type} >{title}</TagContainer>
     )
 }
