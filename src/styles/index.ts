@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Themes } from "./themes";
 
 export const Container = styled.div`
     width: 100%;
@@ -26,6 +27,14 @@ export const Form = styled.form`
     gap: 3rem;
 `
 
-export const Title = styled.h1``
+export const Title = styled.h1`
+    @media(max-width: ${Themes.breakPoints.ipad}) {
+        font-size: 1.25rem;
+    }
+`
 
-export const Subtitle = styled.h3``
+export const Subtitle = styled.h3`
+    @media(max-width: ${Themes.breakPoints.ipad}) {
+        font-size: 1rem;
+    }
+`
