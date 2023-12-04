@@ -17,6 +17,15 @@ export const Header = styled.header`
     gap: 1rem;
 `
 
+export const Form = styled.form`
+    width: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem;
+`
+
 export const Title = styled.h1``
 
 export const Subtitle = styled.h3``

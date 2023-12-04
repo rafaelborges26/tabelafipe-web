@@ -3,7 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Container, Header, Subtitle, Title } from "@/styles";
+import { Container, Form, Header, Subtitle, Title } from "@/styles";
 import { Button } from '@mui/material';
 import { useCars } from '@/contexts/carsContext';
 import { useRouter } from 'next/router';
@@ -49,7 +49,8 @@ export default function Home() {
         <Subtitle>Consulte o valor de um veículo de forma gratuita</Subtitle>
       </Header>
       <Box>
-      <FormControl sx={{ minWidth: 600 }} size="medium">
+        <Form>
+      <FormControl size="medium" style={{width: '100%'}}>
       <InputLabel id="demo-select-small-label">Marca</InputLabel>
       <Select
         labelId="demo-select-small-label"
@@ -63,7 +64,7 @@ export default function Home() {
         )) }
       </Select>
     </FormControl>
-    <FormControl sx={{ minWidth: 600 }} size="medium">
+    <FormControl size="medium" style={{width: '100%'}}>
       <InputLabel id="demo-select-small-label">Modelos</InputLabel>
       <Select
         labelId="demo-select-small-label"
@@ -78,7 +79,7 @@ export default function Home() {
       </Select>
     </FormControl>
     { modelSelected && (
-      <FormControl sx={{ minWidth: 600 }} size="medium">
+      <FormControl size="medium" style={{width: '100%'}}>
       <InputLabel id="demo-select-small-label">Ano</InputLabel>
       <Select
         labelId="demo-select-small-label"
@@ -100,6 +101,7 @@ export default function Home() {
     >
       Consultar preço
     </Button>
+    </Form>
         </Box>
     </Container>
   )
